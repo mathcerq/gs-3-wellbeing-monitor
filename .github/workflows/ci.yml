@@ -3,35 +3,30 @@ name: 6.2 Continuous Integration (CI)
 on:
   push:
     branches:
-      - feature/** - develop    
-      - release    
-      - hotfix     
+      - feature/**
+      - develop
+      - release
+      - hotfix
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      
-      # Setup para Build da aplicação
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+          java-version: "17"
+          distribution: "temurin"
 
       - name: Build with Maven
-        run: mvn clean install -DskipTests
+        run: mvn -B package --file pom.xml
 
-      # Execução de Testes unitários
-      - name: Run Unit Tests
+      - name: Run tests
         run: mvn test
 
-      # Build da imagem Docker (Verificação)
-      - name: Build Docker Image (Verification)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false 
-          tags: mdasilvacerq/gs-3-wellbeing-monitor:latest
+      - name: Docker Build
+        run: docker build -t ci-test-image .
