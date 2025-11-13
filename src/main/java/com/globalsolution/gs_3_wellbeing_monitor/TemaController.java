@@ -17,7 +17,7 @@ public class TemaController {
         response.put("tema", "Ferramentas de monitoramento de bem-estar e saúde mental");
         response.put("membro1", "Seu Nome Completo (RM: 99996)");
         response.put("membro2", "Nome do Seu Colega (RM: 92957)");
-        response.put("descricao", "Uma explicação textual sobre o tema"); // Descrição do tema [cite: 40]
+        response.put("descricao", "Microserviço de integração para o monitoramento de bem-estar em ambientes corporativos."); // Descrição do tema [cite: 40]
         
         return response;
     }
