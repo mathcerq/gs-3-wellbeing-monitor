@@ -6,8 +6,8 @@
 
 ## 📝 Membros e RMs
 
-* [cite_start]**Membro 1**: Seu Nome Completo (RM: 99996) [cite: 100, 101]
-* [cite_start]**Membro 2**: Nome do Seu Colega (RM: 92957) [cite: 100, 101]
+* [cite_start]**Membro 1**: Matheus da Silva Cerqueira (RM: 99996) [cite: 100, 101]
+* [cite_start]**Membro 2**: Gabriel Fernando Gimenez (RM: 92957) [cite: 100, 101]
 
 ## 💡 Resumo da API e Tema
 
