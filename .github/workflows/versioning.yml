@@ -3,7 +3,7 @@ name: 6.1 Automatic Versioning
 on:
   push:
     branches:
-      - [cite_start]main # Disparado por push na branch main [cite: 58]
+      - main 
 
 jobs:
   versioning:
@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: '0'
 
-      - [cite_start]name: Automatic Tagging and Versioning # Gera tags automáticas [cite: 57]
+      - name: Automatic Tagging and Versioning 
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
