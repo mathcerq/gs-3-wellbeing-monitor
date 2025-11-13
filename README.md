@@ -15,6 +15,8 @@
 
 [cite_start]**Finalidade da API:** Servir como um microserviço de integração para fornecer metadados do projeto através do endpoint GET /info, utilizando Java + Spring Boot e preparado para implantação em nuvem. [cite: 7, 26, 103]
 
+Última verificação de versão para entrega final.
+
 ## [cite_start]⚙️ Execução Local [cite: 104]
 
 1.  **Pré-requisitos**: Java 17+ e Maven.
@@ -33,3 +35,5 @@
 | **Versioning (6.1)** | [cite_start]Gerar tags automáticas. [cite: 57] | [cite_start]`push` na branch `main`. [cite: 58] |
 | **Continuous Integration (CI) (6.2)** | [cite_start]Executar Build, Testes Unitários e Build Docker. [cite: 65, 66, 67] | [cite_start]`push` nas branches `feature/**`, `develop`, `release`, `hotfix`. [cite: 68, 71, 72] |
 | **Continuous Delivery (CD) (6.3)** | [cite_start]Enviar imagem ao Docker Hub. [cite: 78] | [cite_start]`pull_request` mesclado na branch `develop`. [cite: 80] |
+
+PRONTO PARA ENTREGA FINAL.
