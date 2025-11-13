@@ -1,0 +1,38 @@
+name: 6.2 Continuous Integration (CI)
+
+on:
+  push:
+    branches:
+      - [cite_start]feature/** # Disparado por push nas branches feature/** [cite: 69]
+      - develop    # Adicionado para capturar pushs diretos em develop
+      - [cite_start]release    # Branches obrigatórias [cite: 71]
+      - [cite_start]hotfix     # Branches obrigatórias [cite: 72]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Setup para Build da aplicação [cite: 65]
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      # Execução de Testes unitários [cite: 66]
+      - name: Run Unit Tests
+        run: mvn test
+
+      # Build da imagem Docker (Verificação) [cite: 67]
+      - name: Build Docker Image (Verification)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false # Apenas verifica o build, não envia
+          tags: mdasilvacerq/gs-3-wellbeing-monitor:latest

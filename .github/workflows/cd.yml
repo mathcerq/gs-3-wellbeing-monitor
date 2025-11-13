@@ -1,0 +1,39 @@
+name: 6.3 Continuous Delivery (CD)
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - [cite_start]develop # Disparado por pull request na branch develop [cite: 80]
+  
+jobs:
+  deploy-to-docker-hub:
+    # Executa somente se o Pull Request foi MESCLADO (merged)
+    if: github.event.pull_request.merged == true 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0' # Necessário para pegar a tag de versão
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Get latest version tag
+        id: get_version
+        run: echo "VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        
+      - [cite_start]name: Push image to Docker Hub # Enviar imagem automaticamente ao Docker Hub [cite: 78]
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            mdasilvacerq/gs-3-wellbeing-monitor:latest
+            mdasilvacerq/gs-3-wellbeing-monitor:${{ steps.get_version.outputs.VERSION }}

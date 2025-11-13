@@ -1,0 +1,21 @@
+name: 6.1 Automatic Versioning
+
+on:
+  push:
+    branches:
+      - [cite_start]main # Disparado por push na branch main [cite: 58]
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - [cite_start]name: Automatic Tagging and Versioning # Gera tags automáticas [cite: 57]
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_badge_label: version
+          default_prefix: v
